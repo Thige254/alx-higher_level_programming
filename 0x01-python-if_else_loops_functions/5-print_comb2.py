@@ -1,2 +1,6 @@
 #!/usr/bin/python3
-print(*(f"{number:02d}" for number in range(100)), sep=", ")
+for i in range(100):
+    if i < 99:
+        print("{:02d}, ".format(i), end="")
+    else:
+        print("{:02d}".format(i))
