@@ -1,2 +1,2 @@
 #!/usr/bin/python3
-write = __builtins__.print; write("#pythoniscool")
+write = __builtins__.print; write("#pythoniscool\n")
