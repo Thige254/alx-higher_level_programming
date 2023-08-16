@@ -5,7 +5,7 @@ def compute_difference(values):
     return max_val - sum(val for val in values if val != max_val)
 
 def roman_to_int(roman_string):
-    if not roman_string or not isinstance(roman_string, str):
+    if not isinstance(roman_string, str) or not roman_string:
         return 0
 
     roman_numerals = {
@@ -17,12 +17,13 @@ def roman_to_int(roman_string):
     current_values = [0]
 
     for char in roman_string:
-        if char in roman_numerals:
-            if roman_numerals[char] > max(current_values):
-                total += compute_difference(current_values)
-                current_values = [roman_numerals[char]]
-            else:
-                current_values.append(roman_numerals[char])
+        if char not in roman_numerals:  # Ensuring every character is a valid Roman numeral
+            return 0
+        if roman_numerals[char] > max(current_values):
+            total += compute_difference(current_values)
+            current_values = [roman_numerals[char]]
+        else:
+            current_values.append(roman_numerals[char])
 
     total += compute_difference(current_values)
 
