@@ -1,9 +1,11 @@
 #!/usr/bin/python3
 import sys
 
-def safe_function(fct, *args):
+def safe_print_integer_err(value):
     try:
-        return fct(*args)
-    except Exception as e:
-        sys.stderr.write("Exception: {}\n".format(e))
-        return None
+        print("{:d}".format(value))
+        return True
+    except (ValueError, TypeError):
+        sys.stderr.write("Exception: Unknown format code 'd'
+        for object of type '{}'\n".format(type(value).__name__))
+        return False
