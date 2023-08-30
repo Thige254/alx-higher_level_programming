@@ -5,7 +5,8 @@ class Square:
     """Represent a square with validations.
     
     Attributes:
-        __size (int): The size of the square, validated to be an integer and 
+        __size (int): The size of the square, validated to be an
+        integer and 
                       greater than or equal to 0.
     """
 
@@ -13,7 +14,8 @@ class Square:
         """Initialize a new Square with validations.
 
         Args:
-            size (int, optional): The size of the new square. Defaults to 0.
+            size (int, optional): The size of the new square.
+            Defaults to 0.
             
         Raises:
             TypeError: If size is not an integer.
