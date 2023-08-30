@@ -1,61 +1,78 @@
 #!/usr/bin/python3
+"""Define classes for representing a singly-linked list."""
+
 
 class Node:
-    """Represents a single node in a singly linked list."""
+    """Defines a node in a singly-linked list."""
 
-    def __init__(self, data, next_node=None):
-        """Initialize the node with data and next reference."""
-        self.data = data
-        self.next_node = next_node
+    def __init__(self, content, next_reference=None):
+        """Initialize a Node instance.
+
+        Parameters:
+            content (int): The content/data of the node.
+            next_reference (Node): Reference to the next node in the list.
+        """
+        self.content = content
+        self.next_reference = next_reference
 
     @property
-    def data(self):
-        """Get the data of the node."""
-        return self.__data
+    def content(self):
+        """Get/set the content/data of the Node."""
+        return (self.__content)
 
-    @data.setter
-    def data(self, value):
-        """Set the data of the node."""
+    @content.setter
+    def content(self, value):
         if not isinstance(value, int):
             raise TypeError("data must be an integer")
-        self.__data = value
+        self.__content = value
 
     @property
-    def next_node(self):
-        """Get the next node in the list."""
-        return self.__next_node
+    def next_reference(self):
+        """Get/set the next node reference of this Node."""
+        return (self.__next_reference)
 
-    @next_node.setter
-    def next_node(self, value):
-        """Set the next node in the list."""
-        if value is not None and not isinstance(value, Node):
-            raise TypeError("next_node must be a Node object")
-        self.__next_node = value
+    @next_reference.setter
+    def next_reference(self, reference):
+        if not isinstance(reference, Node) and reference is not None:
+            raise TypeError("next_reference must be a Node object")
+        self.__next_reference = reference
 
 
 class SinglyLinkedList:
-    """Represents a singly linked list."""
+    """Represents a singly-linked list structure."""
 
     def __init__(self):
-        """Initialize the list with a head set to None."""
-        self.__head = None
+        """Initialize a SinglyLinkedList instance with no head node."""
+        self.__starter_node = None
+
+    def ordered_insert(self, value):
+        """Insert a new Node in the correct position of the SinglyLinkedList.
+
+        The node's position is determined by the numerical value 
+        to ensure the list remains sorted.
+
+        Parameters:
+            value (int): The content/data for the new Node.
+        """
+        new_node = Node(value)
+        if self.__starter_node is None:
+            self.__starter_node = new_node
+        elif self.__starter_node.content > value:
+            new_node.next_reference = self.__starter_node
+            self.__starter_node = new_node
+        else:
+            current = self.__starter_node
+            while (current.next_reference is not None and
+                    current.next_reference.content < value):
+                current = current.next_reference
+            new_node.next_reference = current.next_reference
+            current.next_reference = new_node
 
     def __str__(self):
-        """Return a string representation of the list."""
-        values = []
-        node = self.__head
-        while node:
-            values.append(str(node.data))
-            node = node.next_node
-        return "\n".join(values)
-
-    def sorted_insert(self, value):
-        """Insert a value into the correct position to keep list sorted."""
-        new_node = Node(value)
-        if not self.__head or self.__head.data > value:
-            new_node.next_node, self.__head = self.__head, new_node
-            return
-        node = self.__head
-        while node.next_node and node.next_node.data < value:
-            node = node.next_node
-        new_node.next_node, node.next_node = node.next_node, new_node
+        """Provide a string representation of the SinglyLinkedList content."""
+        nodes_content = []
+        current = self.__starter_node
+        while current is not None:
+            nodes_content.append(str(current.content))
+            current = current.next_reference
+        return ('\n'.join(nodes_content))
