@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Define a class Square with validations for its size attribute."""
+"""Define a class Square."""
 
 class Square:
     """Represent a square with validations.
