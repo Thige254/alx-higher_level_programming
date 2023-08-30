@@ -10,7 +10,8 @@ class Node:
 
         Parameters:
             content (int): The content/data of the node.
-            next_reference (Node): Reference to the next node in the list.
+            next_reference (Node): Reference to the next node
+            in the list.
         """
         self.content = content
         self.next_reference = next_reference
@@ -46,7 +47,8 @@ class SinglyLinkedList:
         self.__starter_node = None
 
     def ordered_insert(self, value):
-        """Insert a new Node in the correct position of the SinglyLinkedList.
+        """Insert a new Node in the correct position of the
+        SinglyLinkedList.
 
         The node's position is determined by the numerical value 
         to ensure the list remains sorted.
@@ -69,7 +71,8 @@ class SinglyLinkedList:
             current.next_reference = new_node
 
     def __str__(self):
-        """Provide a string representation of the SinglyLinkedList content."""
+        """Provide a string representation of the SinglyLinkedList
+        content."""
         nodes_content = []
         current = self.__starter_node
         while current is not None:
