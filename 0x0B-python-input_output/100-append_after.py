@@ -1,4 +1,3 @@
-1-write_file.py
 #!/usr/bin/python3
 """Defines a text file insertion function."""
 
