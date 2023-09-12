@@ -1,5 +1,6 @@
 #!/usr/bin/python3
-"""Defines a function to write an object to a file using its JSON representation."""
+"""Defines a function to write an object to a file
+using its JSON representation."""
 
 def save_to_json_file(my_obj, filename):
     """Writes an object to a text file using a JSON representation.
