@@ -1,5 +1,8 @@
 #!/usr/bin/python3
 import json
+import csv
+import turtle
+
 """Module for Base class."""
 
 class Base:
@@ -68,3 +71,81 @@ class Base:
         # Use list comprehension and the create method
         # to convert dictionaries to instances
         return [cls.create(**d) for d in list_of_dicts]
+
+    @classmethod
+    def save_to_file_csv(cls, list_objs):
+        """Writes the CSV representation of list_objs to a file."""
+        filename = cls.__name__ + ".csv"
+
+        with open(filename, 'w', newline='') as csvfile:
+            if list_objs is None or len(list_objs) == 0:
+                return
+
+            if cls.__name__ == "Rectangle":
+                attributes = ["id", "width", "height", "x", "y"]
+            else:  # Square
+                attributes = ["id", "size", "x", "y"]
+
+            writer = csv.DictWriter(csvfile, fieldnames=attributes)
+            writer.writeheader()
+            for obj in list_objs:
+                writer.writerow(obj.to_dictionary())
+
+    @classmethod
+    def load_from_file_csv(cls):
+        """Return a list of instances from a CSV file."""
+        filename = cls.__name__ + ".csv"
+        instances = []
+
+        try:
+            with open(filename, 'r') as csvfile:
+                reader = csv.DictReader(csvfile)
+                for row in reader:
+                    # Convert each value to int since CSV handles data in strings
+                    for key, value in row.items():
+                        row[key] = int(value)
+                    instances.append(cls.create(**row))
+        except FileNotFoundError:
+            pass
+
+        return instances
+
+    @staticmethod
+    def draw(list_rectangles, list_squares):
+        """Use Turtle graphics module to drawlist of rectangles and squares."""
+
+        # Create new turtle screen
+        window = turtle.Screen()
+        window.bgcolor("white")  # Set background color
+
+        # Create new turtle object
+        t = turtle.Turtle()
+        t.speed(1)  # Slowest speed
+
+        # Draw a given rectangle or square
+        def draw_shape(obj):
+            t.penup()
+            t.goto(obj.x, obj.y)
+            t.pendown()
+            for _ in range(2):
+                if isinstance(obj, Rectangle):
+                    t.forward(obj.width)
+                else:  # it's a square
+                    t.forward(obj.size)
+                t.right(90)
+                if isinstance(obj, Rectangle):
+                    t.forward(obj.height)
+                else:  # it's a square
+                    t.forward(obj.size)
+                t.right(90)
+
+        # Draw each rectangle
+        for rect in list_rectangles:
+            draw_shape(rect)
+
+        # Draw each square
+        for square in list_squares:
+            draw_shape(square)
+
+        # Close the turtle graphics window
+        window.mainloop()
