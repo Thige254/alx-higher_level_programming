@@ -1,5 +1,6 @@
 #!/usr/bin/python3
-"""Square from my previous Rectangle class"""
+"""Module for Square class that inherits from Rectangle class"""
+
 from .rectangle import Rectangle
 
 
