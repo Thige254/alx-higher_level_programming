@@ -2,6 +2,7 @@
 """Square from my previous Rectangle class"""
 from .rectangle import Rectangle
 
+
 class Square(Rectangle):
     """Square class that inherits from Rectangle."""
 
@@ -11,7 +12,8 @@ class Square(Rectangle):
 
     def __str__(self):
         """Return the print() and str() representation of a Square."""
-        return "[Square] ({}) {}/{} - {}".format(self.id, self.x, self.y, self.width)
+        return "[Square] ({}) {}/{} - {}".format(self.id,
+                                                 self.x, self.y, self.width)
 
     @property
     def size(self):
@@ -44,7 +46,6 @@ class Square(Rectangle):
             'x': self.x,
             'y': self.y
         }
-
 
     def to_dictionary(self):
         """Returns the dictionary representation of a Square."""
