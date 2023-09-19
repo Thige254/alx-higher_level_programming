@@ -1,6 +1,5 @@
 #!/usr/bin/python3
 """Module for Square class that inherits from Rectangle."""
-
 from .rectangle import Rectangle
 
 
@@ -37,6 +36,16 @@ class Square(Rectangle):
             for key, value in kwargs.items():
                 if hasattr(self, key):
                     setattr(self, key, value)
+
+    def to_dictionary(self):
+        """Returns the dictionary representation of a Rectangle."""
+        return {
+            'id': self.id,
+            'width': self.width,
+            'height': self.height,
+            'x': self.x,
+            'y': self.y
+        }
 
     def to_dictionary(self):
         """Returns the dictionary representation of a Square."""
