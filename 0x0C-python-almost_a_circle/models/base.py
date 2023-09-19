@@ -1,9 +1,9 @@
 #!/usr/bin/python3
+"""Module for Base class."""
+
 import json
 import csv
 import turtle
-
-"""Module for Base class."""
 
 class Base:
     """Base class to manage id attribute."""
@@ -15,7 +15,6 @@ class Base:
         else:
             Base.__nb_objects += 1
             self.id = Base.__nb_objects
-
 
     @staticmethod
     def to_json_string(list_dictionaries):

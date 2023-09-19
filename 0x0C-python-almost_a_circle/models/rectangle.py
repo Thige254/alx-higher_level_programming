@@ -1,4 +1,6 @@
 #!/usr/bin/python3
+
+"""Module for Rectangle class that inherits from Base."""
 from models.base import Base
 
 
