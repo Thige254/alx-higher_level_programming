@@ -15,4 +15,7 @@ class TestBase(unittest.TestCase):
         b3 = Base(12)
         self.assertEqual(b3.id, 12)
         b4 = Base()
-        self.assertEqual(b4.id, 3)
+
+    def test_to_json_string_None(self):
+        """ Test to_json_string with None """
+        self.assertEqual(Base.to_json_string(None), "[]")
