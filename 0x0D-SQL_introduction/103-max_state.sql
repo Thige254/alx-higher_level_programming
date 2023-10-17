@@ -1,5 +1,7 @@
--- Fetch the highest recorded temperature for each state, sorted alphabetically by the state's name
-SELECT state, MAX(value) AS highest_temperature
+-- Retrieve the peak temperature for each state,
+-- and present the results in alphabetical order by state
+SELECT state AS "state", 
+       MAX(value) AS "max_temp"
 FROM temperatures
-GROUP BY state  -- Grouping by state to get one record per state
-ORDER BY state ASC;  -- Ordering results in ascending order by state name
+GROUP BY state  -- Consolidate results per state
+ORDER BY state ASC;  -- Arrange results by state name in ascending order
