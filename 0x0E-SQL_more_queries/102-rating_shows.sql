@@ -1,7 +1,8 @@
--- List all shows by their rating sum.
-SELECT tv_shows.title, SUM(rating) AS rating
+-- Retrieve shows and their aggregate ratings
+SELECT title, SUM(tv_show_ratings.rate) AS 'rating'
 FROM tv_shows
-JOIN tv_show_genres ON tv_shows.id = tv_show_genres.show_id
-JOIN tv_genres ON tv_show_genres.genre_id = tv_genres.id
-GROUP BY tv_shows.title
+-- Link shows to their respective ratings
+LEFT JOIN tv_show_ratings ON tv_show_ratings.show_id = tv_shows.id
+-- Group and sort by rating (from highest to lowest)
+GROUP BY title
 ORDER BY rating DESC;
