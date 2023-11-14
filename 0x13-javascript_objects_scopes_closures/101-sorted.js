@@ -1,27 +1,30 @@
 #!/usr/bin/node
-
-// Import the 'dict' object from the '101-data.js' file
-const occurrencesDict = require('./101-data').dict;
+// Import the dictionary of occurrences by user id from 101-data.js
+const dict = require('./101-data').dict;
 
 // Convert the dictionary to an array of key-value pairs
-const entries = Object.entries(occurrencesDict);
+const totalList = Object.entries(dict);
 
-// Extract the unique values (occurrences) from the dictionary
-const uniqueOccurrences = [...new Set(Object.values(occurrencesDict))];
+// Extract unique values from the dictionary
+const uniqueValues = [...new Set(Object.values(dict))];
 
-// Create a new dictionary to store user ids by occurrences
-const userIdsByOccurrences = {};
+// Create a new dictionary to store user ids by occurrence
+const newDict = {};
 
-// Iterate over unique occurrences and build the new dictionary
-for (const occurrence of uniqueOccurrences) {
-  // Use filter to get user ids with the current occurrence
-  const userIds = entries
-    .filter(([userId, count]) => count === occurrence)
-    .map(([userId]) => userId);
-  
-  // Add the user ids to the new dictionary
-  userIdsByOccurrences[occurrence] = userIds;
+// Loop through unique values to populate the new dictionary
+for (const j in uniqueValues) {
+  // Initialize an empty list for user ids
+  const list = [];
+  // Loop through the total list to find user ids with the current occurrence
+  for (const k in totalList) {
+    // Check if the occurrence matches the current unique value
+    if (totalList[k][1] === uniqueValues[j]) {
+      // Add the user id to the list
+      list.unshift(totalList[k][0]);
+    }
+  }
+  newDict[uniqueValues[j]] = list;
 }
 
 // Print the new dictionary
-console.log(userIdsByOccurrences);
+console.log(newDict);
