@@ -1,10 +1,11 @@
 #!/usr/bin/python3
-""" Script that takes in the name of a state as an argument and lists all cities
-of that state, using the database hbtn_0e_4_usa.
-"""
+"""Script that takes in the name of a state as an argument and
+lists all cities of that state, using the database hbtn_0e_4_usa."""
+
 
 import MySQLdb
 import sys
+
 
 if __name__ == "__main__":
     # Connect to MySQL server running on localhost at port 3306
@@ -23,7 +24,7 @@ if __name__ == "__main__":
                INNER JOIN states ON states.id = cities.state_id
                WHERE states.name = %s
                ORDER BY cities.id ASC"""
-    
+
     # Execute the query with the state name as a parameter
     cur.execute(query, (state_name,))
 
