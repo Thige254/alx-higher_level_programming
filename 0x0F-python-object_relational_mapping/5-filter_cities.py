@@ -1,32 +1,21 @@
 #!/usr/bin/python3
-"""
-Script that takes in the name of a state as an argument and
-lists all cities of that state, using the database hbtn_0e_4_usa.
-"""
+"""Script that takes in the name of a state as an argument and
+lists all cities of that state, using the database hbtn_0e_4_usa."""
 
 import MySQLdb
 import sys
 
 
-def get_cities_by_state(username, password, database, state_name):
-    """
-    Retrieve and print the names of cities in the specified state.
-
-    Parameters:
-    - username: MySQL username
-    - password: MySQL password
-    - database: Database name
-    - state_name: Name of the state to search for
-
-    Returns:
-    None
-    """
+if __name__ == "__main__":
     # Connect to MySQL server running on localhost at port 3306
-    db = MySQLdb.connect(host="localhost", user=username,
-                         passwd=password, db=database, port=3306)
+    db = MySQLdb.connect(host="localhost", user=sys.argv[1],
+                         passwd=sys.argv[2], db=sys.argv[3], port=3306)
 
     # Create a cursor object
     cur = db.cursor()
+
+    # Get the state name from command-line argument
+    state_name = sys.argv[4]
 
     # Use parameterized query to prevent SQL injection
     query = """SELECT cities.name
@@ -52,16 +41,3 @@ def get_cities_by_state(username, password, database, state_name):
     # Close the cursor and database connection
     cur.close()
     db.close()
-
-
-if __name__ == "__main__":
-    # Ensure correct number of command-line arguments
-    if len(sys.argv) != 5:
-        print("Usage: ./5-filter_cities.py <username> <password> <database> <state_name>")
-        sys.exit(1)
-
-    # Get command-line arguments
-    username, password, database, state_name = sys.argv[1:5]
-
-    # Call the function to get cities by state
-    get_cities_by_state(username, password, database, state_name)
