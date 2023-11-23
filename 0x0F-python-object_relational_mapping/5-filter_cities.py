@@ -7,6 +7,7 @@ lists all cities of that state, using the database hbtn_0e_4_usa.
 import MySQLdb
 import sys
 
+
 def get_cities_by_state(username, password, database, state_name):
     """
     Retrieve and print the names of cities in the specified state.
@@ -51,6 +52,7 @@ def get_cities_by_state(username, password, database, state_name):
     # Close the cursor and database connection
     cur.close()
     db.close()
+
 
 if __name__ == "__main__":
     # Ensure correct number of command-line arguments
