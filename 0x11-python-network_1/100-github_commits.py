@@ -12,14 +12,15 @@ if __name__ == "__main__":
 
     url = f'https://api.github.com/repos/{owner_name}/{repo_name}/commits'
     params = {'per_page': 10}
-    
+
     response = requests.get(url, params=params)
 
     if response.status_code == 200:
         commits = response.json()
         for commit in commits:
             sha = commit.get('sha')
-            author_name = commit.get('commit', {}).get('author', {}).get('name')
+            author_name = commit.get('commit',
+                                     {}).get('author', {}).get('name')
             print(f"{sha}: {author_name}")
     else:
         print(f"Error: {response.status_code}")
