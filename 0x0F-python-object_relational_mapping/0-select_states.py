@@ -5,7 +5,7 @@ import MySQLdb
 import sys
 
 if __name__ == "__main__":
-    # Take MySQL username, password, and database name as command-line arguments
+    # Take MySQL username, password, database name as command-line arguments
     username, password, database = sys.argv[1:]
 
     # Connect to MySQL server running on localhost at port 3306
