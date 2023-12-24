@@ -8,7 +8,7 @@ import MySQLdb
 import sys
 
 if __name__ == "__main__":
-    # Take MySQL usrnm, pswd, database, state name as cmdline args
+    # Take MySQL username, password, database name, and state name as command-line arguments
     username, password, database, state_name = sys.argv[1:]
 
     # Connect to MySQL server running on localhost at port 3306
@@ -24,11 +24,8 @@ if __name__ == "__main__":
     cursor = db.cursor()
 
     # Use format to create the SQL query with the user input
-    query =
-    "SELECT * FROM states"
-    "WHERE name = '{}' "
-    "ORDER BY states.id ASC".format(state_name)
-
+    query = "SELECT * FROM states WHERE name = '{}' ORDER BY states.id ASC".format(state_name)
+    
     # Execute the query
     cursor.execute(query)
 
