@@ -7,6 +7,7 @@ from the database hbtn_0e_0_usa.
 import MySQLdb
 import sys
 
+
 if __name__ == "__main__":
     # Take MySQL username, password, database name as command-line arguments
     username, password, database = sys.argv[1:]
@@ -23,12 +24,9 @@ if __name__ == "__main__":
     # Create a cursor object
     cursor = db.cursor()
 
-    # Execute the query to select states
+    # Execute the query to select states with a name starting with 'N'
     cursor.execute(
-        "SELECT * FROM states "
-        "WHERE name LIKE 'N%' COLLATE utf8_general_ci "
-        "ORDER BY states.id ASC"
-    )
+        "SELECT * FROM states WHERE name LIKE 'N%' ORDER BY states.id ASC")
 
     # Fetch all the rows
     rows = cursor.fetchall()
