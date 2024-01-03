@@ -18,7 +18,6 @@ request(apiUrl, (error, response, body) => {
   const movieData = JSON.parse(body);
   const charactersUrls = movieData.characters;
 
-  // Function to fetch character data and print the name
   const fetchAndPrintCharacter = (characterUrl) => {
     request(characterUrl, (characterError, characterResponse, characterBody) => {
       if (characterError) {
@@ -36,6 +35,5 @@ request(apiUrl, (error, response, body) => {
     });
   };
 
-  // Iterate through charactersUrls and print names
   charactersUrls.forEach(fetchAndPrintCharacter);
 });
